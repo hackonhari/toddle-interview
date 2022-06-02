@@ -3,7 +3,6 @@ import { useState } from "react";
 
 const App = () => {
   const [otp, setOtp] = useState([]);
-
   const handleInputChange = (val, otpIndex) => {
     let OTPCopy = [...otp];
     if (OTPCopy[otpIndex] === undefined) {
