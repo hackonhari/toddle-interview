@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import OTP from "./otp";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [otp, setOtp] = useState([]);
+
+  const handleInputChange = (val, otpIndex) => {
+    console.log(val, otpIndex);
+    let OTPCopy = [...otp];
+    console.log(OTPCopy[otpIndex]);
+    if (OTPCopy[otpIndex] === undefined) {
+      OTPCopy.push(val);
+    } else {
+      OTPCopy.forEach((input, index, array) => {
+        console.log(input, index, array);
+        if (index === otpIndex) {
+          array[otpIndex] = val;
+        }
+      });
+    }
+    setOtp(OTPCopy);
+    console.log(OTPCopy);
+  };
+
+  const handleClear = () => {
+    setOtp([]);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <OTP
+        handleInputChange={handleInputChange}
+        value={otp}
+        handleClear={handleClear}
+      />
     </div>
   );
-}
+};
 
 export default App;
